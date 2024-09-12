@@ -5,51 +5,67 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the code using Maven.' 
+                // Add your actual Maven build command here
+                // e.g., sh 'mvn clean install'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit tests with JavaUnit...' 
+                echo 'Running unit tests with JUnit...' 
+                // Add your actual unit test command here
+                // e.g., sh 'mvn test'
                 echo 'Running integration tests with Selenium...' 
+                // Add your Selenium integration tests command here
+                // e.g., sh 'mvn verify -Pintegration'
             }
         }
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code quality with SonarQube...' 
+                // Add your SonarQube analysis command here
+                // e.g., sh 'mvn sonar:sonar'
             }
         }
         stage('Security Scan') {
             steps {
-                echo 'Scanning for vulnerabilities with SAST scanner..'
+                echo 'Scanning for vulnerabilities with SAST scanner...'
+                // Add your security scan command here
+                // e.g., sh 'sast-scan command'
             }
         }
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying application to staging server using AWS..'
+                echo 'Deploying application to staging server using AWS...'
+                // Add your AWS deployment command here
+                // e.g., sh 'aws deploy command'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging environment...'
+                // Add your integration tests on staging command here
+                // e.g., sh 'staging tests command'
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying application to production server using AWS tools..'
+                echo 'Deploying application to production server using AWS tools...'
+                // Add your production deployment command here
+                // e.g., sh 'aws deploy command'
             }
         }
     }
   
     post {
         success {
-            mail to: "subasinghethisum.com",
-                 subject: "Pipeline Success - Build # ${currentBuild.number}",
+            mail to: "kavindyadesilva19@gmail.com",
+                 subject: "Pipeline Success - Build #${currentBuild.number}",
                  body: "The pipeline has successfully completed all stages. Build logs are attached."
         }
         failure {
-            mail to: "subsinghethisum@gmail.com",
-                 subject: "Pipeline Failure - Build # ${currentBuild.number}",
-                 body: "The pipeline has failed at stage ${currentStage.name}. Build logs are attached."
-        }
-    }
+            mail to: "kavindyadesilva19@gmail.com",
+                 subject: "Pipeline Failure - Build #${currentBuild.number}",
+                 body: "The pipeline has failed. Please check the build logs for more details."
+        }
+    }
 }
