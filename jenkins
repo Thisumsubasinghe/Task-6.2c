@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        EMAIL_RECIPIENT = 'kavindyadesilva19@gmail.com'
+        EMAIL_RECIPIENT = 'subasinghethisum@gmail.com'
     }
 
     stages {
@@ -85,7 +85,7 @@ pipeline {
                     subject: "Build ${currentBuild.fullDisplayName}: ${currentBuild.currentResult}",
                     body: "Build ${currentBuild.fullDisplayName} finished with status ${currentBuild.currentResult}. Logs attached.",
                     recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                    attachLog: true,
+                    attachLogs: true,
                     to: "${EMAIL_RECIPIENT}"
                 )
             }
